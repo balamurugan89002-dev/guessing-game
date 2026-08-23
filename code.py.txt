@@ -1,0 +1,62 @@
+import random
+
+def number_guessing_game():
+    """
+    A simple number guessing game where the player tries to guess
+    a random number between 1 and 100.
+    """
+    # Generate a random number between 1 and 100
+    secret_number = random.randint(1, 100)
+    attempts = 0
+    guessed = False
+    
+    print("=" * 50)
+    print("Welcome to the Number Guessing Game!")
+    print("=" * 50)
+    print("I'm thinking of a number between 1 and 100.")
+    print("Can you guess it?\n")
+    
+    while not guessed:
+        try:
+            # Get user input
+            guess = int(input("Enter your guess: "))
+            attempts += 1
+            
+            # Validate input
+            if guess < 1 or guess > 100:
+                print("âš ï¸  Please enter a number between 1 and 100.\n")
+                continue
+            
+            # Check the guess
+            if guess == secret_number:
+                guessed = True
+                print(f"\nðŸŽ‰ Congratulations! You guessed it!")
+                print(f"The number was: {secret_number}")
+                print(f"You took {attempts} attempts to guess it.")
+                
+                # Display performance
+                if attempts <= 5:
+                    print("â­ Amazing! You're a guessing expert!")
+                elif attempts <= 10:
+                    print("ðŸ‘ Good job! Not bad at all!")
+                else:
+                    print("ðŸ’ª You got it! Keep practicing to improve!")
+                    
+            elif guess < secret_number:
+                print(f"ðŸ“ˆ Too low! Try a higher number.\n")
+            else:
+                print(f"ðŸ“‰ Too high! Try a lower number.\n")
+                
+        except ValueError:
+            print("âŒ Invalid input! Please enter a valid number.\n")
+    
+    # Ask if player wants to play again
+    play_again = input("\nDo you want to play again? (yes/no): ").lower()
+    if play_again == 'yes' or play_again == 'y':
+        print("\n")
+        number_guessing_game()
+    else:
+        print("Thanks for playing! Goodbye! ðŸ‘‹")
+
+if __name__ == "__main__":
+    number_guessing_game()
