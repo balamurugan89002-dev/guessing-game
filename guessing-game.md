@@ -1,6 +1,4 @@
-from pathlib import Path
-
-doc = """# Guessing Game
+# Guessing Game
 
 ## Objective
 
@@ -33,9 +31,4 @@ A beginner-friendly guessing game demonstrating Python fundamentals such as user
 
 ## Hosting
 
-The project is hosted on **GitHub Pages** using a **Vite build**. The Vite application is built into static files and deployed to GitHub Pages so the project can be accessed through a web browser.
-"""
-
-path = Path("/mnt/data/Guessing-Game-Updated-Documentation.md")
-path.write_text(doc, encoding="utf-8")
-print(path)
+The project is hosted on **GitHub Pages** using a **Vite build**. The Vite application is built into static files and deployed to GitHub Pages so the project can be accessed through a web browse
