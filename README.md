@@ -29,4 +29,8 @@ Project documentation is available in the "docs" folder.
 
 👨‍💻 Author
 
+<<<<<<< HEAD
 Bala Murugan
+=======
+Bala Murugan
+>>>>>>> 01395a90dfa82049d33332c75819504c983a11b6
