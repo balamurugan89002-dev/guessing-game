@@ -1,26 +1,24 @@
 Guessing Game
-
 Objective
-
-Build a simple interactive guessing game where the user tries to guess a randomly generated number. The game provides feedback until the correct number is guessed.
-
+Build a simple interactive guessing game where the user tries to guess a randomly generated number within a selected range. The game provides hints when the guess is too high or too low and limits the number of attempts.
 Workflow
-
-1. User starts the game.
-2. The system generates a random number.
-3. User enters a guess.
-4. The system checks the guess.
-5. It displays whether the guess is too high, too low, or correct.
-6. The game continues until the correct number is found.
-
+User enters the lower and upper bounds.
+The program generates a random number within that range using random.randint().
+The program calculates the maximum number of guesses based on the range.
+User enters a guess.
+The program compares the guess with the generated number.
+It displays whether the guess is too high, too low, or correct.
+The game continues until the number is guessed or the maximum attempts are reached.
+If all attempts are used, the program reveals the generated number.
 Tech Stack
-
-- React – User interface
-- JavaScript – Game logic
-- HTML & CSS – Structure and styling
-- Vite – Development and build tool
-- GitHub – Source code hosting and version control
-
+Python – Game logic and number-guessing functionality
+random – Generates the random number
+math – Calculates the maximum number of guesses
+React – User interface
+Vite – Development and build tool
+GitHub – Source code hosting and version control
+GitHub Pages – Project hosting/deployment
 Project Summary
-
-A beginner-friendly web game demonstrating basic React concepts, user input handling, state management, conditional logic, and random number generation.
+A beginner-friendly guessing game demonstrating Python fundamentals such as user input, variables, random number generation, mathematical calculations, conditional statements, and while loops. The project is presented as a web application using React and Vite and is hosted on GitHub Pages.
+Hosting
+The project is hosted on GitHub Pages using a Vite build. The Vite application is built into static files and deployed to GitHub Pages so the project can be accessed through a web browser.
