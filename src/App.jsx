@@ -107,8 +107,19 @@ function App() {
           boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
         }}
       >
-        <h1 style={{ marginTop: "10px", marginBottom: "30px" }}>
-          🎯 Guessing Game
+        {/* Heading */}
+        <h1
+          style={{
+            marginTop: "10px",
+            marginBottom: "30px",
+            lineHeight: "0.9",
+          }}
+        >
+          🎯 Guessing
+          <br />
+          <span style={{ marginLeft: "55px" }}>
+            Game
+          </span>
         </h1>
 
         {!gameStarted && (
@@ -146,7 +157,8 @@ function App() {
             </p>
 
             <p>
-              Chances: <b>{attempts}</b> / <b>{maxAttempts}</b>
+              Chances: <b>{attempts}</b> /{" "}
+              <b>{maxAttempts}</b>
             </p>
 
             {!gameOver && (
@@ -164,7 +176,10 @@ function App() {
                   }}
                 />
 
-                <button onClick={checkGuess} style={buttonStyle}>
+                <button
+                  onClick={checkGuess}
+                  style={buttonStyle}
+                >
                   Guess 🎯
                 </button>
               </>
@@ -174,11 +189,17 @@ function App() {
 
             {gameOver && (
               <>
-                <button onClick={tryAgain} style={buttonStyle}>
+                <button
+                  onClick={tryAgain}
+                  style={buttonStyle}
+                >
                   🔄 Try Again
                 </button>
 
-                <button onClick={changeRange} style={buttonStyle}>
+                <button
+                  onClick={changeRange}
+                  style={buttonStyle}
+                >
                   🔢 Change Range
                 </button>
               </>
