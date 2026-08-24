@@ -111,8 +111,8 @@ function App() {
         <h1
           style={{
             marginTop: "10px",
-            marginBottom: "30px",
-            lineHeight: "0.9",
+            marginBottom: "35px",
+            lineHeight: "1.4",
           }}
         >
           🎯 Guessing
