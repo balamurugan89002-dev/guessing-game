@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyodide Guessing Game</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.29.0/full/pyodide.js"></script>
+</head>
+
+<body>
+
+    <div class="game-card">
+
+        <h1>🎯 Guessing Game</h1>
+
+        <p>Guess the randomly generated number!</p>
+
+        <div id="setup">
+
+            <input
+                id="lower"
+                type="number"
+                placeholder="Lower bound"
+            >
+
+            <input
+                id="upper"
+                type="number"
+                placeholder="Upper bound"
+            >
+
+            <button id="startButton" onclick="startGame()" disabled>
+                Loading Python...
+            </button>
+
+        </div>
+
+        <div id="gameArea" style="display: none;">
+
+            <p id="chances"></p>
+
+            <input
+                id="guess"
+                type="number"
+                placeholder="Enter your guess"
+            >
+
+            <button onclick="makeGuess()">
+                Guess
+            </button>
+
+            <p id="message"></p>
+
+            <button id="restartButton" onclick="restartGame()"
+                    style="display: none;">
+                Play Again
+            </button>
+
+        </div>
+
+        <p id="status">Loading Pyodide...</p>
+
+    </div>
+
+
+    <script>
+
+        let pyodide;
+
+
+        async function loadPython() {
+
+            pyodide = await loadPyodide();
+
+            const pythonCode =
+                await fetch("game.py").then(response => response.text());
+
+            await pyodide.runPythonAsync(pythonCode);
+
+            document.getElementById("startButton").disabled = false;
+
+            document.getElementById("startButton").textContent =
+                "Start Game";
+
+            document.getElementById("status").textContent =
+                "Python is ready!";
+        }
+
+
+        function startGame() {
+
+            const lowerInput =
+                document.getElementById("lower");
+
+            const upperInput =
+                document.getElementById("upper");
+
+            if (
+                lowerInput.value === "" ||
+                upperInput.value === ""
+            ) {
+                document.getElementById("message").textContent =
+                    "Please enter both numbers.";
+                return;
+            }
+
+            const lower = Number(lowerInput.value);
+            const upper = Number(upperInput.value);
+
+            if (lower > upper) {
+                document.getElementById("message").textContent =
+                    "Lower bound must be less than upper bound.";
+                return;
+            }
+
+            const startGameFunction =
+                pyodide.globals.get("start_game");
+
+            const result =
+                startGameFunction(lower, upper);
+
+            document.getElementById("setup").style.display = "none";
+
+            document.getElementById("gameArea").style.display = "block";
+
+            document.getElementById("chances").textContent =
+                result;
+
+            document.getElementById("guess").focus();
+        }
+
+
+        function makeGuess() {
+
+            const guessInput =
+                document.getElementById("guess");
+
+            if (guessInput.value === "") {
+                document.getElementById("message").textContent =
+                    "Please enter a number.";
+                return;
+            }
+
+            const guess = Number(guessInput.value);
+
+            const checkGuessFunction =
+                pyodide.globals.get("check_guess");
+
+            const result =
+                checkGuessFunction(guess);
+
+            document.getElementById("message").textContent =
+                result;
+
+            const gameOverFunction =
+                pyodide.globals.get("is_game_over");
+
+            if (
+                result.includes("Congrats") ||
+                gameOverFunction()
+            ) {
+                document.getElementById("guess").disabled = true;
+
+                document.getElementById("restartButton").style.display =
+                    "block";
+            } else {
+                guessInput.value = "";
+                guessInput.focus();
+            }
+        }
+
+
+        function restartGame() {
+            location.reload();
+        }
+
+
+        loadPython();
+
+    </script>
+
+</body>
+</html>
