@@ -70,12 +70,10 @@ function App() {
     setGuess("");
   }
 
-  // Same range-la new game
   function tryAgain() {
     startGame();
   }
 
-  // New range choose panna starting screen-ku return
   function changeRange() {
     setGameStarted(false);
     setGameOver(false);
@@ -109,7 +107,9 @@ function App() {
           boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
         }}
       >
-        <h1>🎯 Guessing Game</h1>
+        <h1 style={{ marginTop: "10px", marginBottom: "30px" }}>
+          🎯 Guessing Game
+        </h1>
 
         {!gameStarted && (
           <>
